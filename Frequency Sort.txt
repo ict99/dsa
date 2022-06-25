@@ -1,0 +1,26 @@
+class Result {
+
+    /*
+     * Complete the 'itemsSort' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts INTEGER_ARRAY items as parameter.
+     */
+
+    public static List<Integer> itemsSort(List<Integer> items) {
+        Map<Integer, Integer>map=new HashMap<>();
+        for(int i=0; i<items.size();i++){
+            map.put(items.get(i),map.getOrDefault(items.get(i),0)+1);
+        }
+        Collections.sort(items,(n1,n2)->{ 
+            int freq1=map.get(n1);
+            int freq2=map.get(n2);
+            if(freq1 != freq2){
+                return freq2-freq1;
+            }
+            return n2-n1;
+        });
+        Collections.reverse(items);
+        return items;
+    }
+}
